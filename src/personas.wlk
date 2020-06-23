@@ -24,8 +24,16 @@ class Personas {
 	
 	method pais()
 	
+	method esPatriota(){
+		return self.jarrasCerveza().all({jarra => jarra.marca().paisOrigen() == self.pais()})
+	}
+	
 	method quiereEntrar(unaCarpa){
-		return self.leGustaMusicaTradicional() == unaCarpa.tieneBanda() and self.leGustaMarcaCerveza(unaCarpa.marcaDeCerveza())
+		return self.leGustaMusicaTradicional() == unaCarpa.tieneBandaMusical() and self.leGustaMarcaCerveza(unaCarpa.marcaDeCerveza())
+	}
+	
+	method esEbrioEmpedernido(){
+		return jarrasCerveza.all({jarra => jarra.litros () >= 1})
 	}
 }
 

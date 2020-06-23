@@ -11,8 +11,12 @@ class Carpas {
 		return personasEnCarpa.size() < limitePersonas and not unaPersona.estaEbrio()
 	}
 	
+	method puedeEntrar(unaPersona){
+		return self.dejaEntrar(unaPersona) and unaPersona.quiereEntrar(self)
+	}
+	
 	method entraEnCarpa(unaPersona){
-		if(self.dejaEntrar(unaPersona) and unaPersona.quiereEntrar(self)){
+		if(self.puedeEntrar(unaPersona)){
 			personasEnCarpa.add(unaPersona)
 		}else if(not unaPersona.quiereEntrar(self)){
 			self.error("La persona no quiere entrar en la carpa")
@@ -28,5 +32,9 @@ class Carpas {
 		}else{
 			self.error("La persona no se ha encontrado dentro de la carpa" )
 		}
+	}
+	
+	method cantidadEbriosEmpedernidos(){
+		return personasEnCarpa.count({persona => persona.esEbrioEmpedernido()})
 	}
 }
