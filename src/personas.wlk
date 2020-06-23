@@ -1,4 +1,6 @@
 import jarras.*
+import carpas.*
+import marcas.*
 
 class Personas {
 	var property peso = 0
@@ -21,6 +23,10 @@ class Personas {
 	method leGustaMarcaCerveza(unaMarca)
 	
 	method pais()
+	
+	method quiereEntrar(unaCarpa){
+		return self.leGustaMusicaTradicional() == unaCarpa.tieneBanda() and self.leGustaMarcaCerveza(unaCarpa.marcaDeCerveza())
+	}
 }
 
 class Belgas inherits Personas{
@@ -43,4 +49,7 @@ class Alemanes inherits Personas{
 	const pais = "Alemania"
 	override method pais(){ return pais }
 	override method leGustaMarcaCerveza(unaMarca){ return true }
+	override method quiereEntrar(unaCarpa){
+		return super(unaCarpa) and unaCarpa.personasEnCarpa().size().even()
+	}
 }
