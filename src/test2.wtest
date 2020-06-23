@@ -1,0 +1,39 @@
+import personas.*
+import marcas.*
+import jarras.*
+import carpas.*
+
+describe "Test de Carpas y personas con nuevos metodos"{
+	
+	const corona = new Rubia(nombreMarca = "Corona", paisOrigen = "Mexico", graduacionAlcohol = 4.5, lupulo = 5)
+	const carpaCorona = new Carpas(limitePersonas = 2, tieneBandaMusical = true, marcaDeCerveza = corona)
+	const juan = new Belgas(peso = 90, aguante = 200)
+	
+	test "Juan quiere entrar a la carpa corona"{
+		assert.that(juan.quiereEntrar(carpaCorona))
+	}
+	
+	test "Carpa Corona deja ingresar a Juan"{
+		assert.that(carpaCorona.dejaEntrar(juan))
+	}
+	
+	test "Juan puede entrar en carpa corona"{
+		assert.that(carpaCorona.puedeEntrar(juan))
+	}
+	
+	test "Juan entra en la carpa corona y pasan cosas"{
+		//Parte 8
+		carpaCorona.entraEnCarpa(juan)
+		assert.that(carpaCorona.personasEnCarpa().contains(juan))
+		//Parte 9
+		assert.equals(0,juan.jarrasCerveza().size())
+		carpaCorona.servirJarra(juan,1)
+		assert.equals(1,juan.jarrasCerveza().size())
+		//Parte 10
+		assert.equals(1,carpaCorona.cantidadEbriosEmpedernidos())
+		//Parte 11
+		assert.notThat(juan.esPatriota())
+	}
+}
+
+
