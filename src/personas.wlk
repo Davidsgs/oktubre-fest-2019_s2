@@ -6,12 +6,16 @@ class Personas {
 	var property leGustaMusicaTradicional = true
 	var property aguante = 0
 	
-	method estaEbria(){
+	method tomarJarra(unaJarra){
+		jarrasCerveza.add(unaJarra)
+	}
+	
+	method estaEbrio(){
 		return self.alcoholIngerido() * peso > aguante 
 	}
 	
 	method alcoholIngerido(){
-		return jarrasCerveza.sum({jarra => jarra.contenidoAlcohol()})
+		return jarrasCerveza.sum({jarra => jarra.litros()})
 	}
 	
 	method leGustaMarcaCerveza(unaMarca)
